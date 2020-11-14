@@ -1,0 +1,76 @@
+{
+  "webhooks": {
+    "channel-1": "https://discord.com/api/webhooks/000000000000000000/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "channel-2": "https://discord.com/api/webhooks/000000000000000000/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  },
+  "contents": {
+    "credits": {
+      "username": "Credits",
+      "avatar-url": "",
+      "message": "",
+      "author": "AshuGuptaGamer",
+      "author-icon-url": "https://avatars2.githubusercontent.com/u/59139918?s=400&v=4",
+      "author-url": "",
+      "title": "",
+      "title-url": "",
+      "description": "This message was sent by ABDevs-WebhookBuilder application.",
+      "color": 16725558,
+      "footer": "Developed By ABDevs",
+      "footer-url": "",
+      "image": "",
+      "thumbnail": "",
+      "is-timestamp-enable": false,
+      "fields": [
+        [
+          true,
+          "Github:",
+          "[Click Here](https://github.com/AshuGuptaGamer)"
+        ],
+        [
+          true,
+          "Instagram:",
+          "[Click Here](http://instagram.com/ashuguptagamer)"
+        ],
+        [
+          true,
+          "Discord:",
+          "**AshuGuptaGamer#0001**"
+        ]
+      ]
+    },
+    "message-2": {
+      "username": "",
+      "avatar-url": "",
+      "message": "",
+      "author": "",
+      "author-icon-url": "",
+      "author-url": "",
+      "title": "",
+      "title-url": "",
+      "description": "",
+      "color": 0,
+      "footer": "",
+      "footer-url": "",
+      "image": "",
+      "thumbnail": "",
+      "is-timestamp-enable": false,
+      "fields": [
+        [
+          false,
+          "Name",
+          "Value"
+        ],
+        [
+          true,
+          "Name-1",
+          "Value-1"
+        ],
+        [
+          true,
+          "Name-2",
+          "Value-2"
+        ]
+      ]
+    }
+  }
+}
