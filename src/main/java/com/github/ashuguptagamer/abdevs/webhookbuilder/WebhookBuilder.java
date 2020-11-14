@@ -4,6 +4,7 @@ import club.minnced.discord.webhook.send.WebhookEmbed;
 import club.minnced.discord.webhook.send.WebhookEmbedBuilder;
 import club.minnced.discord.webhook.send.WebhookMessageBuilder;
 import com.github.ashuguptagamer.abdevs.webhookbuilder.utils.Constants;
+import com.github.ashuguptagamer.abdevs.webhookbuilder.utils.Utils;
 import com.github.ashuguptagamer.abdevs.webhookbuilder.utils.WebhookSender;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -18,37 +19,38 @@ public class WebhookBuilder {
         final Constants constants = new Constants();
         constants.setDefaultValues();
 
+        System.out.println("\n                    Welcome!\nYou are using ABDevs-WebhookBuilder application.\nYou can send Webhook messages to your Discord channels very easily.\n\n");
+
         final JsonObject webhooks = Constants.webhooks;
         if (webhooks.keySet().isEmpty()) {
-            System.out.println("No Webhook URLs found!");
+            Utils.log("No Webhook URLs found!");
             return;
         }
-        final StringBuilder webhookSelectionPrompt = new StringBuilder();
-        webhookSelectionPrompt.append("Choose a webhook URL:\n");
+        System.out.println("------------------[SETUP]------------------");
         final String separatedWebhookNames = String.join(", ", webhooks.keySet());
-        webhookSelectionPrompt.append(separatedWebhookNames);
         String webhookSelection = "";
         final Scanner scanner = new Scanner(System.in);
         while (!webhooks.has(webhookSelection)) {
-            System.out.println(webhookSelectionPrompt);
+            Utils.log("Choose a webhook URL:");
+            Utils.log(separatedWebhookNames);
+            System.out.print("[Input]: ");
             webhookSelection = scanner.nextLine();
-            if (!webhooks.has(webhookSelection)) System.out.println("Invalid Selection. Try Again!");
+            if (!webhooks.has(webhookSelection)) Utils.log("Invalid Selection. Try Again!");
         }
 
         final JsonObject contents = Constants.contents;
         if (contents.keySet().isEmpty()) {
-            System.out.println("No Content Found To Send!");
+            Utils.log("No Content Found To Send!");
             return;
         }
-        final StringBuilder contentSelectionPrompt = new StringBuilder();
-        contentSelectionPrompt.append("Choose a content to send:\n");
         final String separatedContentNames = String.join(", ", contents.keySet());
-        contentSelectionPrompt.append(separatedContentNames);
         String contentSelection = "";
         while (!contents.has(contentSelection)) {
-            System.out.println(contentSelectionPrompt);
+            Utils.log("Choose a content to send:");
+            Utils.log(separatedContentNames);
+            System.out.print("[Input]: ");
             contentSelection = scanner.nextLine();
-            if (!contents.has(contentSelection)) System.out.println("Invalid Selection. Try Again!");
+            if (!contents.has(contentSelection)) Utils.log("Invalid Selection. Try Again!");
         }
 
         final String webhookUrl = webhooks.get(webhookSelection).getAsString();
@@ -127,10 +129,11 @@ public class WebhookBuilder {
         if (message != null) webhookMessageBuilder.setContent(message);
         if (!embedBuilder.isEmpty()) webhookMessageBuilder.addEmbeds(embedBuilder.build());
         if (webhookMessageBuilder.isEmpty()) {
-            System.out.println("Cannot send the message because Message and Embed both are empty!");
+            Utils.log("Cannot send the message because Message and Embed both are empty!");
             return;
         }
         webhookMessageBuilder.setAvatarUrl(avatarUrl).setUsername(username);
         webhookSender.webhookClient(webhookUrl).send(webhookMessageBuilder.build()).join();
+
     }
 }
