@@ -10,7 +10,7 @@ public class Constants {
     public static JsonObject contents;
 
     public void setDefaultValues() {
-        final JsonElement configElement = JsonParser.parseString(new JsonFileReader().getConfigJsonAsString());
+        final JsonElement configElement = JsonParser.parseString(JsonConfigManager.getConfigJsonAsString());
         final JsonObject configObject = configElement.getAsJsonObject();
         webhooks = configObject.get("webhooks").getAsJsonObject();
         contents = configObject.get("contents").getAsJsonObject();
