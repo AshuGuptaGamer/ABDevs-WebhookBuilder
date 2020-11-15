@@ -25,12 +25,26 @@ public class JsonConfigManager {
         return "";
     }
 
-    public static void addContents(@NotNull String identifier, @NotNull JsonObject messageObject) {
+    public static void addContent(@NotNull String identifier, @NotNull JsonObject messageObject) {
         final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
         final String configJsonAsString = getConfigJsonAsString();
         final JsonObject configObject = JsonParser.parseString(configJsonAsString).getAsJsonObject();
         final JsonObject contents = configObject.get("contents").getAsJsonObject();
         contents.add(identifier, messageObject);
+        final File jsonFile = new File(".", "config.json");
+        try (final FileWriter fileWriter = new FileWriter(jsonFile)) {
+            gson.toJson(configObject, fileWriter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addWebhookUrl(@NotNull String identifier, @NotNull String webhookUrl) {
+        final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+        final String configJsonAsString = getConfigJsonAsString();
+        final JsonObject configObject = JsonParser.parseString(configJsonAsString).getAsJsonObject();
+        final JsonObject webhooks = configObject.get("webhooks").getAsJsonObject();
+        webhooks.addProperty(identifier, webhookUrl);
         final File jsonFile = new File(".", "config.json");
         try (final FileWriter fileWriter = new FileWriter(jsonFile)) {
             gson.toJson(configObject, fileWriter);
